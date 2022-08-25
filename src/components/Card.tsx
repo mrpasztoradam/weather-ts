@@ -1,18 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ICard } from '../interfaces/ICard';
 import './Card.css';
 
-const Card = ({ name, temp, temp_min, temp_max, key }: ICard) => {
+const Card = ({ name, temp, temp_min, temp_max, id }: ICard) => {
   return (
-    <div className="card" key={key}>
-      {/* <img className="card-image" src={imgUrl} alt="" /> */}
+    <div className="card" key={id}>
       <h2>{name}</h2>
       <p>Current:{temp}°</p>
       <p>
-        Minimum:{temp_min}° Maximum: {temp_max}°
+        Minimum:{temp_min}° Maximum: {temp_max}° Key: {id}
       </p>
-      {/* <Paragraph text={name} /> */}
-      {/* <Button className="raise" buttonText="Tesztelek" /> */}
+      <Link to={`/details/${id}`}>Link</Link>
     </div>
   );
 };

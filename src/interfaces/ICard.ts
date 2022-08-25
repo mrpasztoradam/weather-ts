@@ -3,5 +3,5 @@ export interface ICard {
   temp?: number;
   temp_min?: number;
   temp_max?: number;
-  key: number;
+  id: number;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Card from '../components/Card';
 import { getDummyData } from '../data/DummyData';
 import '../data/DummyData.ts';
@@ -16,18 +16,24 @@ function Home() {
         <Input />
         {dummydata.length > 0 &&
           dummydata.map((city: ICard, index) => (
-            <Card
-              name={city.name}
-              temp={city.temp}
-              temp_max={city.temp_max}
-              temp_min={city.temp_min}
-              key={index}
-            />
+            <>
+              <Card
+                name={city.name}
+                temp={city.temp}
+                temp_max={city.temp_max}
+                temp_min={city.temp_min}
+                id={index}
+              />
+              <div>
+                <Link to={`/details/${city.id}`} key={index.toString()} />
+              </div>
+            </>
           ))}
       </main>
       <nav>
         <Link to="/details">About</Link>
       </nav>
+      <Outlet />
     </>
   );
 }

@@ -3,4 +3,5 @@
   transition: 0.3s;
   /*border-radius: 10px; /* 5px rounded corners */
   align-items: center;
+  min-height: 150px;
 }
