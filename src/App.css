@@ -1,6 +1,30 @@
 .App {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px auto;
+  grid-template-areas:
+    'header'
+    'main';
   margin: auto;
-  max-width: 90%;
   text-align: center;
+  gap: 20px;
+  background-color: #0093ab;
+  color: white;
+  height: 100vh;
+}
+
+.header {
+  max-height: fit-content;
+  grid-area: header;
+}
+.main {
+  max-height: fit-content;
+  grid-area: main;
+}
+
+.card-container {
+  display: grid;
+  max-width: 90%;
+  margin: auto;
+  gap: 1rem;
 }

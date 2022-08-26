@@ -1,21 +1,23 @@
 .card {
   display: grid;
-  grid-template-columns: auto 200px;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
     'location temp'
     'alert minmax';
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  /*border-radius: 10px; /* 5px rounded corners */
-  /* align-items: center; */
-  min-height: 150px;
+  border-radius: 1rem;
+  background-color: #00afc1;
+  align-items: stretch;
 }
 
 .card--location {
+  align-items: stretch;
   grid-area: location;
 }
 .card--alert {
+  align-items: center;
   grid-area: alert;
 }
 .card--temp {
@@ -28,6 +30,7 @@
 }
 
 .detail-card {
+  background-color: #00afc1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   /*border-radius: 10px; /* 5px rounded corners */

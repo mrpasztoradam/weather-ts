@@ -4,6 +4,7 @@ let data = [
     temp: 23,
     temp_min: 19.5,
     temp_max: 26.6,
+    alert: 'Nincs baj!',
     id: 1,
   },
   {
@@ -11,14 +12,16 @@ let data = [
     temp: 23,
     temp_min: 19.5,
     temp_max: 26.6,
-    id: 1,
+    alert: 'Nincs baj!',
+    id: 2,
   },
   {
     name: 'Vác',
     temp: 23,
     temp_min: 19.5,
     temp_max: 26.6,
-    id: 1,
+    alert: 'Nincs baj!',
+    id: 3,
   },
 ];
 

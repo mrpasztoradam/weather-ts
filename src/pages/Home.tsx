@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Card from '../components/Card';
+import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
 import '../data/DummyData.ts';
 import { ICard } from '../interfaces/ICard';
@@ -10,32 +10,29 @@ let dummydata = getDummyData();
 
 function Home() {
   return (
-    <>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <Input />
-        {dummydata.length > 0 &&
-          dummydata.map((city: ICard, index) => (
-            <div className="card">
-              <Card
-                name={city.name}
-                temp={city.temp}
-                temp_max={city.temp_max}
-                temp_min={city.temp_min}
-                id={index}
-              >
-                <Link to={`/details/${city.id}`} key={index.toString()}>
-                  Link
-                </Link>
-              </Card>
-            </div>
-          ))}
+    <React.Fragment>
+      <header className="header">
+        <h1>Locations</h1>
+      </header>
+      <main className="main">
+        <div className="card-container">
+          {dummydata.length > 0 &&
+            dummydata.map((city: ICard, index) => (
+              <div className="card">
+                <SmallCard
+                  name={city.name}
+                  temp={city.temp}
+                  temp_max={city.temp_max}
+                  temp_min={city.temp_min}
+                  alert={city.alert}
+                  id={index}
+                ></SmallCard>
+              </div>
+            ))}
+        </div>
       </main>
-      <nav>
-        <Link to="/details">About</Link>
-      </nav>
       <Outlet />
-    </>
+    </React.Fragment>
   );
 }
 
