@@ -1,18 +1,20 @@
-.card {
+.bigcard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: repeat(3fr);
   grid-template-areas:
-    'location temp'
-    'weather-item minmax';
+    'location location'
+    'icon temp'
+    'desc minmax';
   border-radius: 8px;
   box-shadow: 1px 1px 10px rgba(0, 175, 193, 0.1);
   background-color: #00afc1;
   align-items: center;
+  justify-items: center;
   padding: 0.5rem;
 }
 
-.card--location {
+.bigcard--location {
   display: block;
   align-items: center;
   grid-area: location;
@@ -23,54 +25,42 @@
   /* identical to box height */
   color: #ffffff;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
+  text-align: center;
+  padding: 0.5rem;
 }
 
-.card--weather-item {
-  display: grid;
-  grid-template-columns: 55px auto;
-  align-items: center;
-  grid-area: weather-item;
+.bigcard--icon {
+  grid-area: icon;
 }
-
-.card--weather-description {
+.bigcard--temp-current {
+  grid-area: temp;
+  min-width: 15%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  /* identical to box height */
+  color: #ffffff;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
+  text-align: center;
+}
+.bigcard--weather-description {
+  grid-area: desc;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   color: #ffffff;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
-  text-align: left;
+  text-align: center;
 }
-.card--temp-current {
-  grid-area: temp;
-  min-width: 15%;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
-  /* identical to box height */
-  color: #ffffff;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
-  text-align: right;
-}
-.card--minmax {
+.bigcard--minmax {
   grid-area: minmax;
   min-width: 15%;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  align-items: center;
   color: #ffffff;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.09);
-  text-align: right;
-}
-
-.detail-card {
-  background-color: #00afc1;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  /*border-radius: 10px; /* 5px rounded corners */
-  align-items: center;
-  min-height: 300px;
+  text-align: center;
 }

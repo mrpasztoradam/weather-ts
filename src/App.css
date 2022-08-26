@@ -6,11 +6,11 @@
     'header'
     'main';
   margin: auto;
-  text-align: center;
   gap: 20px;
-  background-color: #0093ab;
+  background-color: #006778;
   color: white;
   height: 100vh;
+  font-family: 'Inter-Regular';
 }
 
 .header {

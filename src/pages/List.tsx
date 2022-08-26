@@ -1,5 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import BigCard from '../components/BigCard';
+import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
 import '../data/DummyData.ts';
@@ -17,7 +19,7 @@ function Home() {
         <div className="card-container">
           {dummydata.length > 0 &&
             dummydata.map((city: ICard, index) => (
-              <div className="card">
+              <>
                 <SmallCard
                   locationName={city.locationName}
                   temp_current={city.temp_current}
@@ -26,7 +28,7 @@ function Home() {
                   weatherDescription={city.weatherDescription}
                   id={index}
                 ></SmallCard>
-              </div>
+              </>
             ))}
         </div>
       </main>

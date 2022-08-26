@@ -13,23 +13,22 @@ const SmallCard = ({
   children,
 }: ICard) => {
   return (
-    <React.Fragment key={id}>
-      <div className="card--location">
-        <p>{locationName}</p>
-      </div>
-      <div className="card--temp">
-        <p>{temp_current}°C</p>
-      </div>
-      <div className="card--alert">
-        <p>{weatherDescription}</p>
+    <div className="card" key={id}>
+      <div className="card--location">{locationName}</div>
+      <div className="card--temp-current">{temp_current}°C</div>
+      <div className="card--weather-item">
+        <img
+          className="card--weather-icon"
+          src="https://placehold.co/50"
+          alt="TODO"
+        />
+        <div className="card--weather-description">{weatherDescription}</div>
       </div>
       <div className="card--minmax">
-        <p>
-          H:{temp_max}°C L:{temp_min}°C
-        </p>
+        H:{temp_max}°C L:{temp_min}°C
       </div>
       {children}
-    </React.Fragment>
+    </div>
   );
 };
 
