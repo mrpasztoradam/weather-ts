@@ -4,24 +4,24 @@ import { ICard } from '../interfaces/ICard';
 import './SmallCard.css';
 
 const SmallCard = ({
-  name,
-  temp,
+  locationName,
+  temp_current,
   temp_min,
   temp_max,
-  alert,
+  weatherDescription,
   id,
   children,
 }: ICard) => {
   return (
     <React.Fragment key={id}>
       <div className="card--location">
-        <p>{name}</p>
+        <p>{locationName}</p>
       </div>
       <div className="card--temp">
-        <p>{temp}°C</p>
+        <p>{temp_current}°C</p>
       </div>
       <div className="card--alert">
-        <p>{alert}</p>
+        <p>{weatherDescription}</p>
       </div>
       <div className="card--minmax">
         <p>

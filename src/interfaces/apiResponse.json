@@ -1,0 +1,91 @@
+{
+  "cod": "200",
+  "message": 0,
+  "cnt": 2,
+  "list": [
+    {
+      "dt": 1661515200,
+      "main": {
+        "temp": 305.43,
+        "feels_like": 304.68,
+        "temp_min": 305.43,
+        "temp_max": 306.76,
+        "pressure": 1011,
+        "sea_level": 1011,
+        "grnd_level": 1001,
+        "humidity": 33,
+        "temp_kf": -1.33
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 3.4,
+        "deg": 41,
+        "gust": 3.71
+      },
+      "visibility": 10000,
+      "pop": 0,
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2022-08-26 12:00:00"
+    },
+    {
+      "dt": 1661526000,
+      "main": {
+        "temp": 305.84,
+        "feels_like": 304.4,
+        "temp_min": 305.84,
+        "temp_max": 306.66,
+        "pressure": 1010,
+        "sea_level": 1010,
+        "grnd_level": 1000,
+        "humidity": 27,
+        "temp_kf": -0.82
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "clouds": {
+        "all": 0
+      },
+      "wind": {
+        "speed": 4.28,
+        "deg": 28
+      },
+      "visibility": 10000,
+      "pop": 0,
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2022-08-26 15:00:00"
+    }
+  ],
+  "city": {
+    "id": 715126,
+    "name": "Szolnok",
+    "coord": {
+      "lat": 47.1833,
+      "lon": 20.2
+    },
+    "country": "HU",
+    "population": 75474,
+    "timezone": 7200,
+    "sunrise": 1661485817,
+    "sunset": 1661535139
+  }
+}

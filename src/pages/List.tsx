@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
 import '../data/DummyData.ts';
 import { ICard } from '../interfaces/ICard';
-import Input from '../components/common/Input';
 
 let dummydata = getDummyData();
 
@@ -20,11 +19,11 @@ function Home() {
             dummydata.map((city: ICard, index) => (
               <div className="card">
                 <SmallCard
-                  name={city.name}
-                  temp={city.temp}
+                  locationName={city.locationName}
+                  temp_current={city.temp_current}
                   temp_max={city.temp_max}
                   temp_min={city.temp_min}
-                  alert={city.alert}
+                  weatherDescription={city.weatherDescription}
                   id={index}
                 ></SmallCard>
               </div>

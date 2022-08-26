@@ -15,7 +15,9 @@
 
 .header {
   max-height: fit-content;
+  margin: 1rem;
   grid-area: header;
+  text-align: left;
 }
 .main {
   max-height: fit-content;
@@ -24,7 +26,6 @@
 
 .card-container {
   display: grid;
-  max-width: 90%;
-  margin: auto;
+  margin: 1rem;
   gap: 1rem;
 }

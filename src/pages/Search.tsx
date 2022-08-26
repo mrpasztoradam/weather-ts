@@ -5,7 +5,7 @@ import { getDummyData } from '../data/DummyData';
 
 let dummydata = getDummyData();
 
-function Details() {
+function Search() {
   let params = useParams();
   let cityId = Number(params.cityId);
   return (
@@ -32,4 +32,4 @@ function Details() {
   );
 }
 
-export default Details;
+export default Search;
