@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CityDetails from './pages/CityDetails';
 import Details from './pages/Detalis';
 import Home from './pages/Home';
 

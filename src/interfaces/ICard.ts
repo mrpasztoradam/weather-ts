@@ -4,4 +4,5 @@ export interface ICard {
   temp_min?: number;
   temp_max?: number;
   id: number;
+  children?: React.ReactNode;
 }

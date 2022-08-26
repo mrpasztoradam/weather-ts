@@ -16,18 +16,19 @@ function Home() {
         <Input />
         {dummydata.length > 0 &&
           dummydata.map((city: ICard, index) => (
-            <>
+            <div className="card">
               <Card
                 name={city.name}
                 temp={city.temp}
                 temp_max={city.temp_max}
                 temp_min={city.temp_min}
                 id={index}
-              />
-              <div>
-                <Link to={`/details/${city.id}`} key={index.toString()} />
-              </div>
-            </>
+              >
+                <Link to={`/details/${city.id}`} key={index.toString()}>
+                  Link
+                </Link>
+              </Card>
+            </div>
           ))}
       </main>
       <nav>

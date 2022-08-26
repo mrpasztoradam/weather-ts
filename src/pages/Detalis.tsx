@@ -11,15 +11,17 @@ function Details() {
   return (
     <>
       <main>
-        <>
+        <div className="detail-card">
           <Card
             name={dummydata[cityId].name}
             temp={dummydata[cityId].temp}
             temp_max={dummydata[cityId].temp_max}
             temp_min={dummydata[cityId].temp_min}
             id={cityId}
-          />
-        </>
+          >
+            {/* <Link to={`/details/${cityId}`}>Link</Link> */}
+          </Card>
+        </div>
       </main>
       <nav>
         <Link to="/">Home</Link>
