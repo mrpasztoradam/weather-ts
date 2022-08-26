@@ -5,14 +5,23 @@ import './Card.css';
 
 const Card = ({ name, temp, temp_min, temp_max, id, children }: ICard) => {
   return (
-    <div key={id}>
-      <h2>{name}</h2>
-      <p>Current:{temp}°</p>
-      <p>
-        Minimum:{temp_min}° Maximum: {temp_max}° Key: {id}
-      </p>
+    <React.Fragment key={id}>
+      <div className="card--location">
+        <h2>{name}</h2>
+      </div>
+      <div className="card--temp">
+        <p>Current:{temp}°</p>
+      </div>
+      <div className="card--alert">
+        <p>Current:{temp}°</p>
+      </div>
+      <div className="card--minmax">
+        <p>
+          Minimum:{temp_min}° Maximum: {temp_max}° Key: {id}
+        </p>
+      </div>
       {children}
-    </div>
+    </React.Fragment>
   );
 };
 
