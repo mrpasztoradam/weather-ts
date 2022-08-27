@@ -1,0 +1,25 @@
+.search-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px 3fr;
+  grid-template-areas:
+    'search'
+    'results-container';
+  gap: 1rem;
+}
+
+.search-box {
+  grid-area: search;
+}
+
+.results-container {
+  display: grid;
+  grid-template-rows: repeat(3, 60px);
+  grid-area: results-container;
+  align-items: center;
+  font-size: 24px;
+  padding: 1rem;
+}
+
+.result {
+}

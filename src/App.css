@@ -1,11 +1,12 @@
 .App {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 100px auto 100px;
   grid-template-areas:
     'header'
-    'main';
-  margin: auto;
+    'main'
+    'footer';
+  padding: 1rem;
   gap: 20px;
   background-color: #006778;
   color: white;
@@ -15,17 +16,23 @@
 
 .header {
   max-height: fit-content;
-  margin: 1rem;
   grid-area: header;
   text-align: left;
+}
+
+.page-title {
+  font-size: 32px;
 }
 .main {
   max-height: fit-content;
   grid-area: main;
 }
 
+.footer {
+  grid-area: footer;
+}
+
 .card-container {
   display: grid;
-  margin: 1rem;
   gap: 1rem;
 }

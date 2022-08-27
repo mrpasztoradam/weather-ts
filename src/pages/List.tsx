@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import BigCard from '../components/BigCard';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
@@ -9,11 +8,11 @@ import { ICard } from '../interfaces/ICard';
 
 let dummydata = getDummyData();
 
-function Home() {
+function List() {
   return (
     <React.Fragment>
       <header className="header">
-        <h1>Locations</h1>
+        <p className="page-title">Locations</p>
       </header>
       <main className="main">
         <div className="card-container">
@@ -32,9 +31,12 @@ function Home() {
             ))}
         </div>
       </main>
+      <footer className="footer">
+        <ToggleSwitch />
+      </footer>
       <Outlet />
     </React.Fragment>
   );
 }
 
-export default Home;
+export default List;

@@ -28,3 +28,17 @@ let data = [
 export function getDummyData() {
   return data;
 }
+
+let DummyCities = [
+  {
+    name: 'Budapest',
+  },
+  {
+    name: 'Szolnok',
+  },
+  { name: 'London' },
+];
+
+export function getCities() {
+  return DummyCities;
+}
