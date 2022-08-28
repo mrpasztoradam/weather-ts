@@ -10,6 +10,7 @@ const StyledButton = styled.button.attrs((props: IButton) => ({
   shape: props.shape,
 }))`
   background: #ffd124;
+  border: none;
   box-shadow: 1px 1px 10px rgba(255, 209, 36, 0.1);
   font-weight: 700;
   color: #006778;
@@ -25,6 +26,13 @@ const StyledButton = styled.button.attrs((props: IButton) => ({
   border-radius: ${(props: IButton) =>
     props.shape?.toString() === 'circle' ? '24px' : '8px'};
   text-align: center;
+
+  :hover {
+    background: #ffb900;
+  }
+  :active {
+    background: #ffe482;
+  }
 `;
 
 const Button = ({ shape, children }: IButton) => {
