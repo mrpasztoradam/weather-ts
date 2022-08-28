@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IButton {
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
   children?: React.ReactNode;
   shape?: 'circle' | 'rectangle';
 }
@@ -15,6 +16,9 @@ const StyledButton = styled.button.attrs((props: IButton) => ({
   font-weight: 700;
   color: #006778;
   height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: ${(props: IButton) =>
     props.shape?.toString() === 'circle' ? '36px' : '20px'};
   line-height: ${(props: IButton) =>
@@ -35,8 +39,12 @@ const StyledButton = styled.button.attrs((props: IButton) => ({
   }
 `;
 
-const Button = ({ shape, children }: IButton) => {
-  return <StyledButton shape={shape}>{children}</StyledButton>;
+const Button = ({ shape, children, onClick }: IButton) => {
+  return (
+    <StyledButton onClick={onClick} shape={shape}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
