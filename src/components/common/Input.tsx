@@ -13,18 +13,18 @@ const StyledInput = styled.input`
   text-indent: 1rem;
 `;
 
-const Input = () => {
+interface IInput {
+  onMOTHAFUKA?: () => void | any;
+}
+
+const Input = ({ onMOTHAFUKA }: IInput) => {
   const [value, setValue] = useState<string>('');
   const debouncedValue = useDebounce<string>(value, 1000);
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
-
-  // Fetch API (optional)
   useEffect(() => {
-    // Do fetch here...
-    // Triggers when "debouncedValue" changes
+    console.log(debouncedValue.toString());
   }, [debouncedValue]);
 
   return (

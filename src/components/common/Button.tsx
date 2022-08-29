@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IButton {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
+  //onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
+  onClick?: () => void;
   children?: React.ReactNode;
   shape?: 'circle' | 'rectangle';
 }

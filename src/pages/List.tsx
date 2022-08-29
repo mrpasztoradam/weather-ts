@@ -20,6 +20,7 @@ function List() {
             dummydata.map((city: ICard, index) => (
               <>
                 <SmallCard
+                  onClick={() => console.log(`Clicked card index: ${index}`)}
                   locationName={city.locationName}
                   temp_current={city.temp_current}
                   temp_max={city.temp_max}

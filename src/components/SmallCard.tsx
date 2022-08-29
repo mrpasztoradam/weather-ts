@@ -11,9 +11,10 @@ const SmallCard = ({
   weatherDescription,
   id,
   children,
+  onClick,
 }: ICard) => {
   return (
-    <div className="card" key={id}>
+    <div className="card" onClick={onClick} key={id}>
       <div className="card--location">{locationName}</div>
       <div className="card--temp-current">{temp_current}°C</div>
       <div className="card--weather-item">

@@ -7,14 +7,5 @@ export interface ICard {
   weatherIcon?: string;
   id: number;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
-
-export interface ISearchLocation extends ICard {
-  longDescription?: string;
-  pressure?: number;
-  humidity?: number;
-  windSpeed?: number;
-  windDirection?: number;
-  visibility?: number;
-}
-export interface IDetailsLocation extends ISearchLocation {}
