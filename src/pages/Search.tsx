@@ -1,53 +1,58 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Button from '../components/common/Button';
-import Input from '../components/common/Input';
-import { getCities } from '../data/DummyData';
 import './Search.css';
 import { FiMenu } from 'react-icons/fi';
-import Modal from '../components/Modal';
-import { useBoolean, useDebounce } from 'usehooks-ts';
+import { useDebounce } from 'usehooks-ts';
+import styled from 'styled-components';
+import { IMapsAutocomplete } from '../interfaces/IMapsAutocomplete';
 
-let cities = getCities();
-interface ICity {
-  name: string;
-}
+const StyledInput = styled.input`
+  background: #ffffff;
+  border: 1px solid #e9e9e9;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  font-size: 24px;
+  text-indent: 1rem;
+`;
+
 function Search() {
-  const [unis, setUnis] = useState([]);
+  const [cities, setState] = useState([]);
   const [error, setError] = useState('');
-
-  const [value, setValue] = useState('');
-
-  function handleChange(newValue: string) {
-    setValue(newValue);
-    console.log('handling the change from Search component');
-    console.log(value.toString());
-    console.log(newValue.toString());
-  }
-
-  // fetch(
-  //   `https://fast-dawn-89938.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Budape&inputtype=textquery&key=${process.env.REACT_APP_PLACES_API}`
-  // )
-  //   .then((response) => {
-  //     // If the HTTP response is 2xx then it response.ok will have a value of true
-  //     if (response.ok) {
-  //       return response.json();
-  //     } else {
-  //       // If the API responds meaningful error message,
-  //       // then you can get it by calling response.statusText
-  //       throw new Error('Sorry something went wrong');
-  //     }
-  //   })
-  //   .then((data) => {
-  //     console.log(data);
-  //     setUnis(data);
-  //   })
-  //   .catch((error) => {
-  //     // It is always recommended to define the error messages
-  //     // in the client side rather than simply relying on the server messages,
-  //     // since server messages might not make sense to end user most of the time.
-  //     setError(error.message);
-  //   });
+  const [value, setValue] = useState<string>('');
+  const debouncedValue = useDebounce<string>(value, 1000);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+  useEffect(() => {
+    if (debouncedValue) {
+      fetch(
+        `https://fast-dawn-89938.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${debouncedValue}&inputtype=textquery&key=${process.env.REACT_APP_PLACES_API}`
+      )
+        .then((response) => {
+          // If the HTTP response is 2xx then it response.ok will have a value of true
+          if (response.ok) {
+            return response.json();
+          } else {
+            // If the API responds meaningful error message,
+            // then you can get it by calling response.statusText
+            throw new Error('Sorry something went wrong');
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          setState(data);
+        })
+        .catch((error) => {
+          // It is always recommended to define the error messages
+          // in the client side rather than simply relying on the server messages,
+          // since server messages might not make sense to end user most of the time.
+          setError(error.message);
+        });
+    }
+  }, [debouncedValue]);
 
   return (
     <React.Fragment>
@@ -57,22 +62,30 @@ function Search() {
       <main className="main">
         <div className="search-container">
           <div className="search-box">
-            <Input onMOTHAFUKA={() => handleChange}></Input>
+            <>
+              <StyledInput type="text" value={value} onChange={handleChange} />
+              {console.log(cities.length)}
+            </>
             <div className="results-container">
-              {cities.length > 1 ? (
-                cities.map((city: ICity, index) => (
+              {cities.length > 0 ? (
+                cities.map((city: IMapsAutocomplete, index) => (
                   <div
                     className="result"
                     key={index}
                     onClick={() =>
-                      console.log(`Clicked the city: ${city.name}`)
+                      console.log(
+                        `Clicked the city: ${city.predictions[0].structured_formatting.main_text}`
+                      )
                     }
                   >
-                    {city.name}
+                    <>
+                      {console.log(cities.length.toString())}
+                      {city.predictions[index].structured_formatting.main_text}
+                    </>
                   </div>
                 ))
               ) : (
-                <div>sadasdasd</div>
+                <div>Akkor jelenek meg, ha üres a találati lista tömb...</div>
               )}
             </div>
           </div>
