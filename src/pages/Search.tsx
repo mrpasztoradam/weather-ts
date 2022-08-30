@@ -32,12 +32,9 @@ function Search() {
         `https://fast-dawn-89938.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${debouncedValue}&inputtype=textquery&key=${process.env.REACT_APP_PLACES_API}`
       )
         .then((response) => {
-          // If the HTTP response is 2xx then it response.ok will have a value of true
           if (response.ok) {
             return response.json();
           } else {
-            // If the API responds meaningful error message,
-            // then you can get it by calling response.statusText
             throw new Error('Sorry something went wrong');
           }
         })
@@ -46,9 +43,6 @@ function Search() {
           setState(data);
         })
         .catch((error) => {
-          // It is always recommended to define the error messages
-          // in the client side rather than simply relying on the server messages,
-          // since server messages might not make sense to end user most of the time.
           setError(error.message);
         });
     }
