@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import BigCard from '../components/BigCard';
-import {
-  ICity,
-  IDayListItem,
-  IFiveDayForecast,
-} from '../interfaces/IOpenWeatherApi';
+import Forecast from '../components/Forecast';
+import { IDayListItem, IFiveDayForecast } from '../interfaces/IOpenWeatherApi';
 
 const useWeatherApi = (userInput?: string) => {
-  const [result, setResult] = useState<IDayListItem[]>([]);
+  const [dailyPred, setDaily] = useState<IDayListItem[]>([]);
+  const [nightlyPred, setNightly] = useState<IDayListItem[]>([]);
   useEffect(() => {
     if (userInput) {
       fetch(
@@ -18,46 +15,31 @@ const useWeatherApi = (userInput?: string) => {
           const predictions: IDayListItem[] = data.list;
           const daily = predictions.filter((data) => data.dt % 86400 === 43200);
           console.log(daily);
-          return setResult(predictions);
+          const nightly = predictions.filter((data) => data.dt % 86400 === 0);
+          console.log(nightly);
+          setNightly(nightly);
+          setDaily(daily);
         })
       );
     }
   }, [userInput]);
-  return result;
+  return { dailyPred, nightlyPred };
 };
 
 function Details() {
   const { id } = useParams();
   const predictions = useWeatherApi(id);
+  const dailyData: IDayListItem[] = predictions.dailyPred;
+  const nightlyData: IDayListItem[] = predictions.nightlyPred;
   return (
     <>
       <main>
         <p>Teszt, hogy legyen itt valami</p>
         <div className="detail-card">
-          <>
-            {predictions?.length > 0 ? (
-              predictions?.map((day: IDayListItem, index) => (
-                <div key={index}>
-                  <p>{day.main?.temp}</p>
-                </div>
-              ))
-            ) : (
-              <p>Itt még nincs adat</p>
-            )}
-          </>
-          {/* <SmallCard
-            locationName={results[1].dt?.toString()}
-            temp_current={results[1].main?.temp}
-            temp_max={results[1].main?.temp_max}
-            temp_min={results[1].main?.temp_min}
-            weatherDescription={results[1].weather?.main}
-            id={1}
-          ></SmallCard> */}
+          <Forecast predDaily={dailyData} predNightly={nightlyData} />
         </div>
       </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+      <nav>{/* <Link to="/">Home</Link> */}</nav>
       <Outlet />
     </>
   );

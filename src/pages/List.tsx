@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
@@ -8,7 +8,8 @@ import { ICard } from '../interfaces/ICard';
 
 let dummydata = getDummyData();
 
-function List() {
+const List = () => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <header className="header">
@@ -20,7 +21,7 @@ function List() {
             dummydata.map((city: ICard, index) => (
               <>
                 <SmallCard
-                  onClick={() => console.log(`Clicked card index: ${index}`)}
+                  onClick={() => navigate(`/details/${city.locationName}`)}
                   locationName={city.locationName}
                   temp_current={city.temp_current}
                   temp_max={city.temp_max}
@@ -38,6 +39,9 @@ function List() {
       <Outlet />
     </React.Fragment>
   );
-}
+};
 
 export default List;
+function useHistory() {
+  throw new Error('Function not implemented.');
+}

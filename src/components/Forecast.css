@@ -1,0 +1,7 @@
+.forecast-container {
+  display: grid;
+  grid-template-areas: 'forecast-item forecast-item forecast-item forecast-item forecast-item';
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
