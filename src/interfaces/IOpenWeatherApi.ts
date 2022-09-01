@@ -30,10 +30,7 @@ export interface IWind {
 export interface ICity {
   id?: number;
   name?: string;
-  coord?: {
-    lat?: number;
-    lon?: number;
-  };
+  coord?: ICoord;
   country?: string;
   population?: number;
   timezone?: number;
@@ -41,20 +38,35 @@ export interface ICity {
   sunset?: number;
 }
 
+interface ICoord {
+  lat: number;
+  lon: number;
+}
+
 export interface IDayListItem {
-  dt?: string;
+  dt: number;
   main?: IMain;
-  weather?: IWeather;
+  weather?: IWeather[];
   clouds?: IClouds;
   wind?: IWind;
   visibility?: number;
   pop?: number;
+  rain?: IRain;
+  sys?: ISys;
   dt_txt?: string;
+}
+interface ISys {
+  pod: string;
+}
+
+interface IRain {
+  '3h': number;
 }
 
 export interface IFiveDayForecast {
-  list?: IDayListItem[];
-  cnt?: number;
+  cod?: string;
   message?: number;
-  cod?: number;
+  cnt?: number;
+  city: ICity;
+  list: IDayListItem[];
 }

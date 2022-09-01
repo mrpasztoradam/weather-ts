@@ -62,19 +62,21 @@ function Search() {
           <div className="results-container">
             {cities.length > 0 ? (
               cities.map((city: IPrediction, index) => (
-                <div
+                <Link
+                  to={`/details/${city.structured_formatting.main_text}`}
                   className="result"
                   key={index}
-                  onClick={() =>
-                    console.log(
-                      `Clicked the city: ${city.structured_formatting.main_text}`
-                    )
-                  }
+                  // onClick={() =>
+                  //   console.log(
+                  //     `Clicked the city: ${city.structured_formatting.main_text}`
+                  //   )
+                  // }
                 >
-                  <Link to={`/details/${city.structured_formatting.main_text}`}>
+                  {/* <Link to={`/details/${city.structured_formatting.main_text}`}>
                     {city.structured_formatting.main_text}
-                  </Link>
-                </div>
+                  </Link> */}
+                  {city.structured_formatting.main_text}
+                </Link>
               ))
             ) : (
               <div>Akkor jelenek meg, ha üres a találati lista tömb...</div>
