@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Button from '../components/common/Button';
 import './Search.css';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { useBoolean, useDebounce } from 'usehooks-ts';
+import { useBoolean, useDebounce, useReadLocalStorage } from 'usehooks-ts';
 import styled from 'styled-components';
 import {
   IMapsAutocomplete,
@@ -54,12 +54,14 @@ const Search = () => {
     setValue(event.target.value);
   };
 
-  let selectedCity: string = '';
-
   const handleSelection = (city: string) => {
     setModalCity(city);
     setTrue();
   };
+
+  const storedObject: any = useReadLocalStorage('storedCities');
+  const storedCities = JSON.parse(storedObject);
+  console.log(storedCities);
 
   return (
     <React.Fragment>
@@ -111,7 +113,7 @@ const Search = () => {
               <FiX />
             </Button>
           </div>
-          <ModalContent value={modalCity} />
+          <ModalContent value={modalCity} storedCities={storedCities} />
         </ReactModal>
       </main>
       <footer className="footer"></footer>

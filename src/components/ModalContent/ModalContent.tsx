@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useLocalStorage } from 'usehooks-ts';
 import { useWeatherApi } from '../../hooks/useWatherApi';
 import BigCard from '../BigCard/BigCard';
 import Button from '../common/Button';
@@ -10,13 +11,15 @@ let div = (a: any, b: number) => a / b;
 
 interface IModal {
   value: string;
+  storedCities: string[];
 }
 
-const ModalContent = ({ value }: IModal) => {
+const ModalContent = ({ value, storedCities }: IModal) => {
   const predictions = useWeatherApi(value);
   const navigate = useNavigate();
   const dailyData = predictions.dailyPred;
   const nightlyData = predictions.nightlyPred;
+  const [values, setLocalStorage] = useLocalStorage('storedCities', '');
 
   if (
     !dailyData ||
@@ -27,6 +30,14 @@ const ModalContent = ({ value }: IModal) => {
     // Display a message or Show a Loading Gif here
     return <div>Loading...</div>;
   }
+
+  const handleCityAdd = (cityName: string) => {
+    console.log(storedCities);
+    storedCities.push(cityName);
+    console.log(storedCities);
+    setLocalStorage(JSON.stringify(storedCities));
+    navigate('/');
+  };
 
   return (
     <div className="modal-content">
@@ -81,7 +92,9 @@ const ModalContent = ({ value }: IModal) => {
         ></InfoBox>
       </div>
       <div className="nav-button">
-        <Button shape="rectangle">Add</Button>
+        <Button shape="rectangle" onClick={() => handleCityAdd(value)}>
+          Add
+        </Button>
       </div>
     </div>
   );

@@ -1,17 +1,19 @@
 import React from 'react';
-import { FiPlus } from 'react-icons/fi';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
+import { getDummyData } from '../data/DummyData';
+import { FiMail, FiPlus } from 'react-icons/fi';
 import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
-import { getDummyData } from '../data/DummyData';
-import '../data/DummyData.ts';
-import { ICard } from '../interfaces/ICard';
 import './List.css';
-
-let dummydata = getDummyData();
+import { ICard } from '../interfaces/ICard';
 
 const List = () => {
+  const [values, setLocalStorage] = useLocalStorage('storedCities', '');
+  const storedObject: any = useReadLocalStorage('storedCities');
+  const storedCities = JSON.parse(storedObject);
+  //console.log(storedCities);
   const navigate = useNavigate();
   return (
     <React.Fragment>
@@ -20,16 +22,12 @@ const List = () => {
       </header>
       <main className="main">
         <div className="card-container">
-          {dummydata.length > 0 &&
-            dummydata.map((city: ICard, index) => (
+          {storedCities.length > 0 &&
+            storedCities.map((city: string, index: number) => (
               <>
                 <SmallCard
-                  onClick={() => navigate(`/details/${city.locationName}`)}
-                  locationName={city.locationName}
-                  temp_current={city.temp_current}
-                  temp_max={city.temp_max}
-                  temp_min={city.temp_min}
-                  weatherDescription={city.weatherDescription}
+                  onClick={() => navigate(`/details/${city}`)}
+                  cityName={city}
                   id={index}
                 ></SmallCard>
               </>
