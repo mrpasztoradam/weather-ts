@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import './InfoBox.css';
 
 interface IInfoBox {
   title?: string;
@@ -11,9 +12,9 @@ interface IInfoBox {
 const InfoBox = ({ title, value, unit, className, children }: IInfoBox) => {
   return (
     <div className={className}>
-      <div>{title}</div>
-      <div>{value}</div>
-      <div>{unit}</div>
+      <div className="infobox-title">{title}</div>
+      <div className="infobox-value">{value}</div>
+      <div className="infobox-unit">{unit}</div>
     </div>
   );
 };

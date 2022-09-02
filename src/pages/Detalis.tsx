@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import BigCard from '../components/BigCard';
+import Button from '../components/common/Button';
 import Forecast from '../components/Forecast';
 import InfoBox from '../components/InfoBox';
 import { IDayListItem, IFiveDayForecast } from '../interfaces/IOpenWeatherApi';
@@ -34,22 +36,35 @@ let div = (a: any, b: number) => a / b;
 const Details = () => {
   const { id } = useParams();
   const predictions = useWeatherApi(id);
+  const navigate = useNavigate();
   const dailyData = predictions.dailyPred;
   const nightlyData = predictions.nightlyPred;
+
+  if (
+    !dailyData ||
+    !nightlyData ||
+    dailyData.length <= 0 ||
+    nightlyData.length <= 0
+  ) {
+    // Display a message or Show a Loading Gif here
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      <main>
+      <main className="details-container">
         <BigCard
           dailyData={dailyData[0]}
           nightlyData={nightlyData[0]}
           cityName={id}
         ></BigCard>
         <div className="descriptive-info">
-          Feels like {dailyData[0].main?.feels_like?.toFixed(0)}°C, with a
-          minimum temprature of {nightlyData[0].main?.temp_min?.toFixed(0)}°C
-          and a maximum of {dailyData[0].main?.temp_max?.toFixed(0)}°C
+          Feels like {dailyData[0].main?.feels_like?.toFixed(0)}°C,{' '}
+          {dailyData[0].weather[0].description} with a minimum temprature of{' '}
+          {nightlyData[0].main?.temp_min?.toFixed(0)}°C and a maximum of{' '}
+          {nightlyData[0].main?.temp_max?.toFixed(0)}°C
         </div>
-        <div>Details</div>
+        <div className="label">Details</div>
         <div className="info-container">
           <InfoBox
             className="info-item"
@@ -88,12 +103,19 @@ const Details = () => {
             unit="degrees"
           ></InfoBox>
         </div>
-        <div>5 day forecast</div>
+        <div className="label">5 day forecast</div>
         <div>
           <Forecast predDaily={dailyData} predNightly={nightlyData} />
         </div>
       </main>
-      <nav>{/* <Link to="/">Home</Link> */}</nav>
+      <footer className="footer">
+        <div></div>
+        <div className="nav-button">
+          <Button shape="circle" onClick={() => navigate(`/`)}>
+            <FiMenu />
+          </Button>
+        </div>
+      </footer>
       <Outlet />
     </>
   );

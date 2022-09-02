@@ -12,7 +12,7 @@ export interface IMain {
 
 export interface IWeather {
   id?: number;
-  main: string;
+  main?: string;
   description?: string;
   icon?: string;
 }

@@ -5,3 +5,15 @@
   justify-items: center;
   text-align: center;
 }
+
+.forecast-item-title {
+  font-size: 16px;
+  color: #ffffffcc;
+}
+.forecast-item-tempmax {
+  font-size: 18px;
+}
+.forecast-item-tempmin {
+  font-size: 14px;
+  color: #ffffffcc;
+}

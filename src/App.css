@@ -29,7 +29,14 @@
 }
 
 .footer {
+  display: grid;
   grid-area: footer;
+  align-items: center;
+  grid-template-areas: '. .';
+}
+
+.nav-button {
+  justify-self: right;
 }
 
 .card-container {

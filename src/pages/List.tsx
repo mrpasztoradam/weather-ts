@@ -1,5 +1,7 @@
 import React from 'react';
+import { FiPlus } from 'react-icons/fi';
 import { Outlet, useNavigate } from 'react-router-dom';
+import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
@@ -34,7 +36,14 @@ const List = () => {
         </div>
       </main>
       <footer className="footer">
-        <ToggleSwitch />
+        <div>
+          <ToggleSwitch />
+        </div>
+        <div className="nav-button">
+          <Button shape="circle" onClick={() => navigate(`search`)}>
+            <FiPlus />
+          </Button>
+        </div>
       </footer>
       <Outlet />
     </React.Fragment>

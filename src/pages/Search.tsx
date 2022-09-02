@@ -65,15 +65,7 @@ const Search = () => {
                   to={`/details/${city.structured_formatting.main_text}`}
                   className="result"
                   key={index}
-                  // onClick={() =>
-                  //   console.log(
-                  //     `Clicked the city: ${city.structured_formatting.main_text}`
-                  //   )
-                  // }
                 >
-                  {/* <Link to={`/details/${city.structured_formatting.main_text}`}>
-                    {city.structured_formatting.main_text}
-                  </Link> */}
                   {city.structured_formatting.main_text}
                 </Link>
               ))
@@ -83,12 +75,7 @@ const Search = () => {
           </div>
         </div>
       </main>
-      <footer className="footer">
-        <Button shape="circle">
-          <FiMenu />
-        </Button>
-        <Button shape="rectangle">Button</Button>
-      </footer>
+      <footer className="footer"></footer>
       <Outlet />
     </React.Fragment>
   );

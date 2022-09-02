@@ -3,7 +3,7 @@
   grid-template-areas:
     'info-item info-item info-item'
     'info-item info-item info-item';
-  gap: 16px;
+  gap: 20px;
   justify-items: center;
   text-align: center;
 }
@@ -11,6 +11,16 @@
 .info-item {
 }
 
+.label {
+  font-size: 20px;
+}
+
 .descriptive-info {
-  size: 16px;
+  font-size: 16px;
+  color: #ffffffcc;
+}
+
+.details-container {
+  display: grid;
+  gap: 1rem;
 }

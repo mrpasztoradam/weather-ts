@@ -11,7 +11,7 @@ const ForecastItem = (props: {
 
   return (
     <div className="forecast-item">
-      <div>
+      <div className="forecast-item-title">
         {weekday} {day}
       </div>
       <div>
@@ -21,8 +21,12 @@ const ForecastItem = (props: {
           alt="TODO"
         />
       </div>
-      <div>{props.predDay.main?.temp_max?.toFixed(0)}°C</div>
-      <div>{props.predNight.main?.temp_min?.toFixed(0)}°C</div>
+      <div className="forecast-item-tempmax">
+        {props.predDay.main?.temp_max?.toFixed(0)}°C
+      </div>
+      <div className="forecast-item-tempmin">
+        {props.predNight.main?.temp_min?.toFixed(0)}°C
+      </div>
     </div>
   );
 };
