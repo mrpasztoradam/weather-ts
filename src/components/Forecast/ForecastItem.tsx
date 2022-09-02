@@ -1,5 +1,5 @@
 import React from 'react';
-import { IDayListItem } from '../interfaces/IOpenWeatherApi';
+import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
 
 const ForecastItem = (props: {
   predDay: IDayListItem;

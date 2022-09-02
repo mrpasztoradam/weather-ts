@@ -7,6 +7,7 @@ import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
 import '../data/DummyData.ts';
 import { ICard } from '../interfaces/ICard';
+import './List.css';
 
 let dummydata = getDummyData();
 

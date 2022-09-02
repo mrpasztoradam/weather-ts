@@ -1,15 +1,15 @@
 .search-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 60px 3fr;
+  grid-template-rows: 60px;
   grid-template-areas:
-    'search'
+    'search-box'
     'results-container';
   gap: 1rem;
 }
 
 .search-box {
-  grid-area: search;
+  grid-area: search-box;
 }
 
 .results-container {
@@ -24,4 +24,32 @@
 .result {
   color: white;
   text-decoration: none;
+}
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: #006778;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3c3b3b99;
+}
+
+.close-button {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+.empty-results {
+  text-align: center;
 }

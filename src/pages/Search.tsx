@@ -1,14 +1,17 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Button from '../components/common/Button';
 import './Search.css';
-import { FiMenu } from 'react-icons/fi';
-import { useDebounce } from 'usehooks-ts';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { useBoolean, useDebounce } from 'usehooks-ts';
 import styled from 'styled-components';
 import {
   IMapsAutocomplete,
   IPrediction,
 } from '../interfaces/IMapsAutocomplete';
+import ReactModal from 'react-modal';
+import ModalContent from '../components/ModalContent/ModalContent';
+import './Search.css';
 
 const StyledInput = styled.input`
   background: #ffffff;
@@ -42,12 +45,22 @@ const useAutocomplete = (userInput: string) => {
 };
 
 const Search = () => {
-  const [value, setValue] = useState<string>('');
-  const debouncedValue = useDebounce<string>(value, 1000);
+  const [modalCity, setModalCity] = useState<string>('');
+  const [inputValue, setValue] = useState<string>('');
+  const debouncedValue = useDebounce<string>(inputValue, 1000);
   const cities = useAutocomplete(debouncedValue);
+  const { value, setTrue, setFalse } = useBoolean(false);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
+
+  let selectedCity: string = '';
+
+  const handleSelection = (city: string) => {
+    setModalCity(city);
+    setTrue();
+  };
+
   return (
     <React.Fragment>
       <header className="header">
@@ -56,24 +69,50 @@ const Search = () => {
       <main className="main">
         <div className="search-container">
           <div className="search-box">
-            <StyledInput type="text" value={value} onChange={handleChange} />
+            <StyledInput
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+            />
           </div>
           <div className="results-container">
             {cities.length > 0 ? (
               cities.map((city: IPrediction, index) => (
-                <Link
-                  to={`/details/${city.structured_formatting.main_text}`}
-                  className="result"
-                  key={index}
+                <div
+                  onClick={() =>
+                    handleSelection(city.structured_formatting.main_text)
+                  }
                 >
                   {city.structured_formatting.main_text}
-                </Link>
+                </div>
               ))
             ) : (
-              <div>Akkor jelenek meg, ha üres a találati lista tömb...</div>
+              <div className="empty-results">
+                <div style={{ fontSize: '24px' }}>Search for a city</div>
+                <div style={{ fontSize: '20px', color: '#FFFFFF80' }}>
+                  E.g. London, New York, Berlin
+                </div>
+              </div>
             )}
           </div>
         </div>
+        <ReactModal
+          className="modal"
+          overlayClassName="modal-overlay"
+          isOpen={value}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={setFalse}
+          shouldCloseOnEsc={true}
+          ariaHideApp={false}
+          preventScroll={true}
+        >
+          <div className="close-button">
+            <Button shape="circle" onClick={setFalse}>
+              <FiX />
+            </Button>
+          </div>
+          <ModalContent value={modalCity} />
+        </ReactModal>
       </main>
       <footer className="footer"></footer>
       <Outlet />

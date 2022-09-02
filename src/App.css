@@ -35,10 +35,6 @@
   grid-template-areas: '. .';
 }
 
-.nav-button {
-  justify-self: right;
-}
-
 .card-container {
   display: grid;
   gap: 1rem;

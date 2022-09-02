@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { IDayListItem } from '../interfaces/IOpenWeatherApi';
+import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
 import './BigCard.css';
 
 interface IBigCard {

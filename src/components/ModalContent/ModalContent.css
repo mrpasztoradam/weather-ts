@@ -1,0 +1,13 @@
+.modal-content {
+  display: grid;
+  gap: 20px;
+  color: #fff;
+  padding: 1rem;
+}
+
+.label {
+}
+
+.nav-button {
+  justify-self: center;
+}
