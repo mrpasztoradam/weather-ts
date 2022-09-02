@@ -42,7 +42,6 @@ const useAutocomplete = (userInput: string) => {
 };
 
 const Search = () => {
-  const [error, setError] = useState('');
   const [value, setValue] = useState<string>('');
   const debouncedValue = useDebounce<string>(value, 1000);
   const cities = useAutocomplete(debouncedValue);

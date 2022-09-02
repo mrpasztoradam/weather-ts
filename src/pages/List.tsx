@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard';
 import { getDummyData } from '../data/DummyData';
@@ -42,6 +42,3 @@ const List = () => {
 };
 
 export default List;
-function useHistory() {
-  throw new Error('Function not implemented.');
-}

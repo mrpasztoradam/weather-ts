@@ -1,0 +1,16 @@
+.info-container {
+  display: grid;
+  grid-template-areas:
+    'info-item info-item info-item'
+    'info-item info-item info-item';
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
+
+.info-item {
+}
+
+.descriptive-info {
+  size: 16px;
+}
