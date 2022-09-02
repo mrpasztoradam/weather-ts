@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
+import BigCard from '../components/BigCard';
 import Forecast from '../components/Forecast';
 import { IDayListItem, IFiveDayForecast } from '../interfaces/IOpenWeatherApi';
 
@@ -26,7 +27,7 @@ const useWeatherApi = (userInput?: string) => {
   return { dailyPred, nightlyPred };
 };
 
-function Details() {
+const Details = () => {
   const { id } = useParams();
   const predictions = useWeatherApi(id);
   const dailyData: IDayListItem[] = predictions.dailyPred;
@@ -34,8 +35,28 @@ function Details() {
   return (
     <>
       <main>
-        <p>Teszt, hogy legyen itt valami</p>
-        <div className="detail-card">
+        <BigCard
+          temp={Math.round(dailyData[0].main.temp)}
+          tempMaxDay={Math.round(dailyData[0].main.temp_max)}
+          tempMinNight={Math.round(nightlyData[0].main.temp_min)}
+          weatherDescription={dailyData[0].weather[0].description}
+          cityName={id}
+        ></BigCard>
+        <div>
+          <p>Itt lesz a szöveg, ami elmondja szövegesen az érdekes infókat</p>
+        </div>
+        <div>Details</div>
+        <div>
+          Ez egy Info Card konténer lesz, 6 info kártyával
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+        </div>
+        <div>5 day forecast</div>
+        <div>
           <Forecast predDaily={dailyData} predNightly={nightlyData} />
         </div>
       </main>
@@ -43,6 +64,6 @@ function Details() {
       <Outlet />
     </>
   );
-}
+};
 
 export default Details;

@@ -41,7 +41,7 @@ const useAutocomplete = (userInput: string) => {
   return userData;
 };
 
-function Search() {
+const Search = () => {
   const [error, setError] = useState('');
   const [value, setValue] = useState<string>('');
   const debouncedValue = useDebounce<string>(value, 1000);
@@ -93,6 +93,6 @@ function Search() {
       <Outlet />
     </React.Fragment>
   );
-}
+};
 
 export default Search;
