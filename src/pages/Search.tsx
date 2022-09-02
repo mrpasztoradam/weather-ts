@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import './Search.css';
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -49,6 +49,7 @@ const Search = () => {
   const [inputValue, setValue] = useState<string>('');
   const debouncedValue = useDebounce<string>(inputValue, 1000);
   const cities = useAutocomplete(debouncedValue);
+  const navigate = useNavigate();
   const { value, setTrue, setFalse } = useBoolean(false);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -57,6 +58,11 @@ const Search = () => {
   const handleSelection = (city: string) => {
     setModalCity(city);
     setTrue();
+  };
+
+  const handleModalClose = () => {
+    navigate('/');
+    setFalse();
   };
 
   const storedObject: any = useReadLocalStorage('storedCities');
@@ -109,7 +115,7 @@ const Search = () => {
           preventScroll={true}
         >
           <div className="close-button">
-            <Button shape="circle" onClick={setFalse}>
+            <Button shape="circle" onClick={handleModalClose}>
               <FiX />
             </Button>
           </div>

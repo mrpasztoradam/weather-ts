@@ -10,7 +10,8 @@
   gap: 20px;
   background-color: #006778;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
+  min-width: fit-content;
   font-family: 'Inter-Regular';
 }
 
