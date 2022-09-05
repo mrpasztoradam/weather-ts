@@ -1,13 +1,11 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
-import { getDummyData } from '../data/DummyData';
 import { FiMail, FiPlus } from 'react-icons/fi';
 import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
-import SmallCard from '../components/SmallCard';
+import SmallCard from '../components/SmallCard/SmallCard';
 import './List.css';
-import { ICard } from '../interfaces/ICard';
 
 const List = () => {
   const [values, setLocalStorage] = useLocalStorage('storedCities', '');

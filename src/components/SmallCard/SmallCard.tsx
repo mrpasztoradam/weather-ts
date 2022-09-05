@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
-import { useWeatherApi } from '../hooks/useWatherApi';
-import { ICard } from '../interfaces/ICard';
-import { IDayListItem } from '../interfaces/IOpenWeatherApi';
+import { useReadLocalStorage } from 'usehooks-ts';
+import useWeatherApi from '../../hooks/useWeatherApi';
+import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
 import './SmallCard.css';
 
 interface ISmallCard {
@@ -18,6 +17,7 @@ const SmallCard = ({ cityName, children, id, onClick }: ISmallCard) => {
   const predictions = useWeatherApi(cityName);
   const dailyData = predictions.dailyPred;
   const nightlyData = predictions.nightlyPred;
+  const isMetric = useReadLocalStorage('isMetric');
 
   if (
     !dailyData ||
@@ -33,7 +33,8 @@ const SmallCard = ({ cityName, children, id, onClick }: ISmallCard) => {
     <div className="card" onClick={onClick} key={id}>
       <div className="card--location">{cityName}</div>
       <div className="card--temp-current">
-        {dailyData[0].main?.temp?.toFixed(0)}°C
+        {dailyData[0].main?.temp?.toFixed(0)}
+        {isMetric ? '°C' : '°F'}
       </div>
       <div className="card--weather-item">
         <img
@@ -46,8 +47,10 @@ const SmallCard = ({ cityName, children, id, onClick }: ISmallCard) => {
         </div>
       </div>
       <div className="card--minmax">
-        H:{dailyData[0].main?.temp_max?.toFixed(0)}°C L:
-        {nightlyData[0].main?.temp_min?.toFixed(0)}°C
+        H:{dailyData[0].main?.temp_max?.toFixed(0)}
+        {isMetric ? '°C' : '°F'} L:
+        {nightlyData[0].main?.temp_min?.toFixed(0)}
+        {isMetric ? '°C' : '°F'}
       </div>
       {children}
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useReadLocalStorage } from 'usehooks-ts';
 import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
 
 const ForecastItem = (props: {
@@ -8,6 +9,7 @@ const ForecastItem = (props: {
   const date = new Date(props.predDay.dt * 1000);
   const weekday = date.toLocaleString('default', { weekday: 'short' });
   const day = date.getDate();
+  const isMetric = useReadLocalStorage('isMetric');
 
   return (
     <div className="forecast-item">
@@ -22,10 +24,12 @@ const ForecastItem = (props: {
         />
       </div>
       <div className="forecast-item-tempmax">
-        {props.predDay.main?.temp_max?.toFixed(0)}°C
+        {props.predDay.main?.temp_max?.toFixed(0)}
+        {isMetric ? '°C' : '°F'}
       </div>
       <div className="forecast-item-tempmin">
-        {props.predNight.main?.temp_min?.toFixed(0)}°C
+        {props.predNight.main?.temp_min?.toFixed(0)}
+        {isMetric ? '°C' : '°F'}
       </div>
     </div>
   );

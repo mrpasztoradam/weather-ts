@@ -1,11 +1,12 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useReadLocalStorage } from 'usehooks-ts';
 import BigCard from '../components/BigCard/BigCard';
 import Button from '../components/common/Button';
 import Forecast from '../components/Forecast/Forecast';
 import InfoBox from '../components/InfoBox/InfoBox';
-import { useWeatherApi } from '../hooks/useWatherApi';
+import useWeatherApi from '../hooks/useWeatherApi';
 import './Details.css';
 
 let div = (a: any, b: number) => a / b;
@@ -16,7 +17,7 @@ const Details = () => {
   const navigate = useNavigate();
   const dailyData = predictions.dailyPred;
   const nightlyData = predictions.nightlyPred;
-
+  const isMetric = useReadLocalStorage('isMetric');
   if (
     !dailyData ||
     !nightlyData ||
@@ -36,10 +37,12 @@ const Details = () => {
           cityName={id}
         ></BigCard>
         <div className="descriptive-info">
-          Feels like {dailyData[0].main?.feels_like?.toFixed(0)}°C,{' '}
-          {dailyData[0].weather[0].description} with a minimum temprature of{' '}
-          {nightlyData[0].main?.temp_min?.toFixed(0)}°C and a maximum of{' '}
-          {nightlyData[0].main?.temp_max?.toFixed(0)}°C
+          Feels like {dailyData[0].main?.feels_like?.toFixed(0)}
+          {isMetric ? '°C' : '°F'}, {dailyData[0].weather[0].description} with a
+          minimum temprature of {nightlyData[0].main?.temp_min?.toFixed(0)}
+          {isMetric ? '°C' : '°F'} and a maximum of{' '}
+          {nightlyData[0].main?.temp_max?.toFixed(0)}
+          {isMetric ? '°C' : '°F'}
         </div>
         <div className="label">Details</div>
         <div className="info-container">
