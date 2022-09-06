@@ -1,8 +1,7 @@
 import React from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
-import ReactModal from 'react-modal';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useBoolean, useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
+import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import BigCard from '../components/BigCard/BigCard';
 import Button from '../components/common/Button';
 import Forecast from '../components/Forecast/Forecast';
@@ -27,7 +26,7 @@ const Details = () => {
 
   const handleRemove = (id: string | undefined) => {
     console.log(storedCities);
-    storedCities.splice(id, 1);
+    storedCities.splice(storedCities.indexOf(id), 1);
     console.log(storedCities);
     setLocalStorage(JSON.stringify(storedCities));
     navigate('/');
@@ -44,7 +43,6 @@ const Details = () => {
     dailyData.length <= 0 ||
     nightlyData.length <= 0
   ) {
-    // Display a message or Show a Loading Gif here
     return (
       <div>
         <main className="details-container">Loading...</main>
