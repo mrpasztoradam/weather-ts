@@ -41,7 +41,7 @@ const ModalContent = ({ value, storedCities }: IModal) => {
   };
 
   return (
-    <div className="modal-content">
+    <div className="modal-container">
       <BigCard
         dailyData={dailyData[0]}
         nightlyData={nightlyData[0]}
@@ -55,7 +55,7 @@ const ModalContent = ({ value, storedCities }: IModal) => {
         {nightlyData[0].main?.temp_max?.toFixed(0)}
         {isMetric ? '°C' : '°F'}
       </div>
-      <div className="label">Details</div>
+      <div className="details-label">Details</div>
       <div className="info-container">
         <InfoBox
           className="info-item"
@@ -94,7 +94,7 @@ const ModalContent = ({ value, storedCities }: IModal) => {
           unit="degrees"
         ></InfoBox>
       </div>
-      <div className="nav-button">
+      <div className="modal-nav-button">
         <Button shape="rectangle" onClick={() => handleCityAdd(value)}>
           Add
         </Button>

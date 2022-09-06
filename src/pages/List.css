@@ -1,3 +1,18 @@
 .nav-button {
   justify-self: right;
+  text-align: center;
+}
+
+.card-container {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    justify-items: stretch;
+    margin: auto;
+  }
 }

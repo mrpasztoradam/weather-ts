@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
-import { FiMail, FiPlus } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard/SmallCard';
 import './List.css';
 
 const List = () => {
-  const [values, setLocalStorage] = useLocalStorage('storedCities', '');
   const storedObject: any = useReadLocalStorage('storedCities');
   const storedCities = JSON.parse(storedObject);
-  //console.log(storedCities);
   const navigate = useNavigate();
+  const [isMetric, setUnits] = useLocalStorage('isMetric', true);
+  const [switchState, setSwitchState] = useState(true);
+
+  const toggleUnits = () => {
+    setUnits((prevValue) => !prevValue);
+    setSwitchState((prevValue) => !prevValue);
+    window.location.reload();
+  };
   return (
     <React.Fragment>
       <header className="header">
@@ -27,14 +33,16 @@ const List = () => {
                   onClick={() => navigate(`/details/${city}`)}
                   cityName={city}
                   id={index}
+                  key={index}
                 ></SmallCard>
               </>
             ))}
         </div>
       </main>
       <footer className="footer">
-        <div>
-          <ToggleSwitch />
+        <div className="nav-button">
+          <div>°C/°F</div>
+          <ToggleSwitch isOn={isMetric} handleToggle={toggleUnits} />
         </div>
         <div className="nav-button">
           <Button shape="circle" onClick={() => navigate(`search`)}>

@@ -7,10 +7,10 @@
     'icon temp'
     'desc minmax';
   border-radius: 8px;
-  /* box-shadow: 1px 1px 10px rgba(0, 175, 193, 0.1); */
   align-items: center;
   justify-items: center;
   padding: 0.5rem;
+  grid-area: bigcard;
 }
 
 .bigcard--location {
@@ -30,6 +30,7 @@
 
 .bigcard--icon {
   grid-area: icon;
+  max-height: 100px;
 }
 .bigcard--temp-current {
   grid-area: temp;

@@ -1,3 +1,4 @@
+import WeatherIcon from '../../components/WeatherIcon/WeatherIcon';
 import React from 'react';
 import { useReadLocalStorage } from 'usehooks-ts';
 import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
@@ -16,12 +17,8 @@ const ForecastItem = (props: {
       <div className="forecast-item-title">
         {weekday} {day}
       </div>
-      <div>
-        <img
-          className="card--weather-icon"
-          src="https://placehold.co/50"
-          alt="TODO"
-        />
+      <div className="forecast--weather-icon">
+        <WeatherIcon id={props.predDay.weather[0].id}></WeatherIcon>
       </div>
       <div className="forecast-item-tempmax">
         {props.predDay.main?.temp_max?.toFixed(0)}

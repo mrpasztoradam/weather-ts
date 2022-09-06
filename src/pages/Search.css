@@ -6,6 +6,8 @@
     'search-box'
     'results-container';
   gap: 1rem;
+  max-width: 600px;
+  margin: auto;
 }
 
 .search-box {

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FiMenu } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
+import ReactModal from 'react-modal';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useReadLocalStorage } from 'usehooks-ts';
+import { useBoolean, useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import BigCard from '../components/BigCard/BigCard';
 import Button from '../components/common/Button';
 import Forecast from '../components/Forecast/Forecast';
@@ -17,7 +18,26 @@ const Details = () => {
   const navigate = useNavigate();
   const dailyData = predictions.dailyPred;
   const nightlyData = predictions.nightlyPred;
+  const error = predictions.error;
+
   const isMetric = useReadLocalStorage('isMetric');
+  const [values, setLocalStorage] = useLocalStorage('storedCities', '');
+  const storedObject: any = useReadLocalStorage('storedCities');
+  const storedCities = JSON.parse(storedObject);
+
+  const handleRemove = (id: string | undefined) => {
+    console.log(storedCities);
+    storedCities.splice(id, 1);
+    console.log(storedCities);
+    setLocalStorage(JSON.stringify(storedCities));
+    navigate('/');
+  };
+
+  if (error) {
+    console.log(error);
+    return <div>Bocsi nincs net!</div>;
+  }
+
   if (
     !dailyData ||
     !nightlyData ||
@@ -25,11 +45,16 @@ const Details = () => {
     nightlyData.length <= 0
   ) {
     // Display a message or Show a Loading Gif here
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <main className="details-container">Loading...</main>
+      </div>
+    );
   }
 
   return (
     <>
+      <header className="header"></header>
       <main className="details-container">
         <BigCard
           dailyData={dailyData[0]}
@@ -44,7 +69,7 @@ const Details = () => {
           {nightlyData[0].main?.temp_max?.toFixed(0)}
           {isMetric ? '°C' : '°F'}
         </div>
-        <div className="label">Details</div>
+        <div className="details-label">Details</div>
         <div className="info-container">
           <InfoBox
             className="info-item"
@@ -83,13 +108,17 @@ const Details = () => {
             unit="degrees"
           ></InfoBox>
         </div>
-        <div className="label">5 day forecast</div>
-        <div>
+        <div className="forecast-label">5 day forecast</div>
+        <div className="forecast">
           <Forecast predDaily={dailyData} predNightly={nightlyData} />
         </div>
       </main>
       <footer className="footer">
-        <div></div>
+        <div>
+          <Button shape="circle" onClick={() => handleRemove(id)}>
+            <FiX />
+          </Button>
+        </div>
         <div className="nav-button">
           <Button shape="circle" onClick={() => navigate(`/`)}>
             <FiMenu />

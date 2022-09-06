@@ -31,6 +31,9 @@
   align-items: center;
   grid-area: weather-item;
 }
+.card--weather-icon {
+  max-width: -webkit-fill-available;
+}
 
 .card--weather-description {
   font-style: normal;

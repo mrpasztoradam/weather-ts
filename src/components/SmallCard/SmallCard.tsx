@@ -1,3 +1,4 @@
+import WeatherIcon from '../../components/WeatherIcon/WeatherIcon';
 import React, { ReactNode } from 'react';
 import { useReadLocalStorage } from 'usehooks-ts';
 import useWeatherApi from '../../hooks/useWeatherApi';
@@ -37,11 +38,9 @@ const SmallCard = ({ cityName, children, id, onClick }: ISmallCard) => {
         {isMetric ? '°C' : '°F'}
       </div>
       <div className="card--weather-item">
-        <img
-          className="card--weather-icon"
-          src="https://placehold.co/50"
-          alt="TODO"
-        />
+        <div className="card--weather-icon">
+          <WeatherIcon id={dailyData[0].weather[0].id}></WeatherIcon>
+        </div>
         <div className="card--weather-description">
           {dailyData[0].weather[0].description}
         </div>

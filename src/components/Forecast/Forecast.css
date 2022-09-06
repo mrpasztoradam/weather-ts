@@ -17,3 +17,7 @@
   font-size: 14px;
   color: #ffffffcc;
 }
+
+.forecast--weather-icon {
+  max-width: 50px;
+}

@@ -1,3 +1,4 @@
+import WeatherIcon from '../../components/WeatherIcon/WeatherIcon';
 import React, { ReactNode } from 'react';
 import { useReadLocalStorage } from 'usehooks-ts';
 import { IDayListItem } from '../../interfaces/IOpenWeatherApi';
@@ -15,11 +16,9 @@ const BigCard = ({ cityName, dailyData, nightlyData, children }: IBigCard) => {
   return (
     <div className="bigcard">
       <div className="bigcard--location">{cityName}</div>
-      <img
-        className="bigcard--weather-icon"
-        src="https://placehold.co/100"
-        alt="TODO"
-      />
+      <div className="bigcard--icon">
+        <WeatherIcon id={dailyData?.weather[0].id}></WeatherIcon>
+      </div>
       <div className="bigcard--weather-description">
         {dailyData?.weather[0].main}
       </div>

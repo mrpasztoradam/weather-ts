@@ -20,6 +20,11 @@
   grid-area: header;
   text-align: left;
 }
+@media (min-width: 600px) {
+  .header {
+    text-align: center;
+  }
+}
 
 .page-title {
   font-size: 32px;
@@ -32,11 +37,8 @@
 .footer {
   display: grid;
   grid-area: footer;
-  align-items: center;
   grid-template-areas: '. .';
-}
-
-.card-container {
-  display: grid;
-  gap: 1rem;
+  align-content: center;
+  justify-content: space-between;
+  margin: 2rem;
 }

@@ -1,13 +1,49 @@
 .modal-content {
   display: grid;
   gap: 20px;
-  color: #fff;
+}
+
+.modal-nav-button {
+  grid-area: modal-nav-button;
+  margin: auto;
+}
+
+.modal-container {
   padding: 1rem;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 50px 50px auto auto;
+  grid-template-areas:
+    'bigcard'
+    'info'
+    'details-label'
+    'info-container'
+    'modal-nav-button';
+  gap: 1rem;
 }
 
-.label {
-}
+@media (min-width: 600px) {
+  .modal-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 30px auto auto;
+    grid-template-areas:
+      'bigcard info'
+      'details-label details-label'
+      'info-container info-container'
+      'modal-nav-button modal-nav-button';
+    max-width: 800px;
+    justify-items: stretch;
+    align-items: center;
+    margin: auto;
+  }
 
-.nav-button {
-  justify-self: center;
+  .info-container {
+    display: grid;
+    grid-template-areas: 'info-item info-item info-item info-item info-item info-item';
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+    grid-area: info-container;
+  }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useBoolean } from 'usehooks-ts';
 
 const StyledLabel = styled.label<{ checked: boolean }>`
   display: block;
@@ -24,16 +23,19 @@ const StyledLabel = styled.label<{ checked: boolean }>`
   }
 `;
 
-const ToggleSwitch = () => {
-  const [switchState, setSwitchState] = useState(true);
+interface IToggle {
+  isOn: boolean;
+  handleToggle: () => void;
+}
 
+const ToggleSwitch = ({ isOn, handleToggle }: IToggle) => {
   return (
-    <StyledLabel checked={switchState}>
+    <StyledLabel checked={isOn}>
       <input
         id="checkbox"
         type="checkbox"
-        checked={switchState}
-        onChange={() => setSwitchState(!switchState)}
+        checked={isOn}
+        onChange={handleToggle}
       />
     </StyledLabel>
   );
