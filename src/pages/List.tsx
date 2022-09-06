@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import { FiPlus } from 'react-icons/fi';
@@ -7,10 +7,12 @@ import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard/SmallCard';
 import './List.css';
 import { mainModule } from 'process';
+import { render } from '@testing-library/react';
 
 const List = () => {
   const storedObject: any = useReadLocalStorage('storedCities');
-  const storedCities = JSON.parse(storedObject);
+  let storedCities: string[] =
+    storedObject !== null ? JSON.parse(storedObject) : ['London'];
   const navigate = useNavigate();
   const [isMetric, setUnits] = useLocalStorage('isMetric', true);
   const [switchState, setSwitchState] = useState(true);
@@ -22,10 +24,8 @@ const List = () => {
     window.location.reload();
   };
 
-  if (!storedCities || storedCities.length <= 0) {
-    storedCities.push('London');
+  if (storedObject == null) {
     setLocalStorage(JSON.stringify(storedCities));
-    navigate('/');
   }
 
   return (
