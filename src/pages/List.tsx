@@ -24,9 +24,11 @@ const List = () => {
     window.location.reload();
   };
 
-  if (storedObject == null) {
-    setLocalStorage(JSON.stringify(storedCities));
-  }
+  useEffect(() => {
+    if (storedObject == null) {
+      setLocalStorage(JSON.stringify(storedCities));
+    }
+  });
 
   return (
     <React.Fragment>
