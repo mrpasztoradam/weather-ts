@@ -35,6 +35,8 @@
   right: 40px;
   bottom: 40px;
   background-color: #006778;
+  max-width: 800px;
+  margin: auto;
 }
 
 .modal-overlay {
