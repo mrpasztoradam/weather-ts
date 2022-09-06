@@ -116,7 +116,7 @@ const Search = () => {
         >
           <div className="close-button">
             <Button shape="circle" onClick={handleModalClose}>
-              <FiX />
+              {'\u2715'}
             </Button>
           </div>
           <ModalContent value={modalCity} storedCities={storedCities} />

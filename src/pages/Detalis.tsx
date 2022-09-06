@@ -114,12 +114,12 @@ const Details = () => {
       <footer className="footer">
         <div>
           <Button shape="circle" onClick={() => handleRemove(id)}>
-            <FiX />
+            {'\u2715'}
           </Button>
         </div>
         <div className="nav-button">
           <Button shape="circle" onClick={() => navigate(`/`)}>
-            <FiMenu />
+            <div style={{ position: 'relative', top: '-4px' }}>{'\u2630'}</div>
           </Button>
         </div>
       </footer>

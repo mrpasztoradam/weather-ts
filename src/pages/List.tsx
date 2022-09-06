@@ -57,7 +57,7 @@ const List = () => {
         </div>
         <div className="nav-button">
           <Button shape="circle" onClick={() => navigate(`search`)}>
-            <FiPlus />
+            {'\u002b'}
           </Button>
         </div>
       </footer>
