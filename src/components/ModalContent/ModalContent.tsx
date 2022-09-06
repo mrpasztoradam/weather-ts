@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import useWeatherApi from '../../hooks/useWeatherApi';
 import BigCard from '../BigCard/BigCard';

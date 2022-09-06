@@ -6,6 +6,7 @@ import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard/SmallCard';
 import './List.css';
+import { mainModule } from 'process';
 
 const List = () => {
   const storedObject: any = useReadLocalStorage('storedCities');
@@ -13,12 +14,20 @@ const List = () => {
   const navigate = useNavigate();
   const [isMetric, setUnits] = useLocalStorage('isMetric', true);
   const [switchState, setSwitchState] = useState(true);
+  const [values, setLocalStorage] = useLocalStorage('storedCities', '');
 
   const toggleUnits = () => {
     setUnits((prevValue) => !prevValue);
     setSwitchState((prevValue) => !prevValue);
     window.location.reload();
   };
+
+  if (!storedCities || storedCities.length <= 0) {
+    storedCities.push('London');
+    setLocalStorage(JSON.stringify(storedCities));
+    navigate('/');
+  }
+
   return (
     <React.Fragment>
       <header className="header">
