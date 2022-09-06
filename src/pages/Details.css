@@ -6,21 +6,65 @@
   gap: 20px;
   justify-items: center;
   text-align: center;
+  grid-area: info-container;
 }
 
-.info-item {
+.forecast {
+  grid-area: forecast;
 }
 
-.label {
+.forecast-label {
   font-size: 20px;
+  grid-area: forecast-label;
+}
+.details-label {
+  font-size: 20px;
+  grid-area: details-label;
 }
 
 .descriptive-info {
   font-size: 16px;
   color: #ffffffcc;
+  grid-area: info;
 }
 
 .details-container {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 50px 30px 1fr 30px 1fr;
+  grid-template-areas:
+    'bigcard'
+    'info'
+    'details-label'
+    'info-container'
+    'forecast-label'
+    'forecast';
   gap: 1rem;
+  min-height: 80vh;
+}
+
+@media (min-width: 600px) {
+  .details-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 30px auto 30px auto;
+    grid-template-areas:
+      'bigcard info'
+      'details-label details-label'
+      'info-container info-container'
+      'forecast-label forecast-label'
+      'forecast forecast';
+    max-width: 800px;
+    justify-items: stretch;
+    align-items: center;
+    margin: auto;
+  }
+
+  .info-container {
+    display: grid;
+    grid-template-areas: 'info-item info-item info-item info-item info-item info-item';
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+    grid-area: info-container;
+  }
 }
