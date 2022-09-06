@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
-import { FiPlus } from 'react-icons/fi';
 import Button from '../components/common/Button';
 import ToggleSwitch from '../components/common/ToggleSwitch';
 import SmallCard from '../components/SmallCard/SmallCard';
 import './List.css';
-import { mainModule } from 'process';
-import { render } from '@testing-library/react';
 
 const List = () => {
   const storedObject: any = useReadLocalStorage('storedCities');
@@ -37,7 +34,7 @@ const List = () => {
       </header>
       <main className="main">
         <div className="card-container">
-          {storedCities.length > 0 &&
+          {storedCities.length > 0 ? (
             storedCities.map((city: string, index: number) => (
               <>
                 <SmallCard
@@ -47,7 +44,10 @@ const List = () => {
                   key={index}
                 ></SmallCard>
               </>
-            ))}
+            ))
+          ) : (
+            <div>Please add a City to your favourites!</div>
+          )}
         </div>
       </main>
       <footer className="footer">

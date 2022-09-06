@@ -33,9 +33,7 @@ const ModalContent = ({ value, storedCities }: IModal) => {
   }
 
   const handleCityAdd = (cityName: string) => {
-    console.log(storedCities);
     storedCities.push(cityName);
-    console.log(storedCities);
     setLocalStorage(JSON.stringify(storedCities));
     navigate('/');
   };

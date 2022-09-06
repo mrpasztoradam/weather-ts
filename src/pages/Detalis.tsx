@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts';
 import BigCard from '../components/BigCard/BigCard';
@@ -25,15 +24,12 @@ const Details = () => {
   const storedCities = JSON.parse(storedObject);
 
   const handleRemove = (id: string | undefined) => {
-    console.log(storedCities);
     storedCities.splice(storedCities.indexOf(id), 1);
-    console.log(storedCities);
     setLocalStorage(JSON.stringify(storedCities));
     navigate('/');
   };
 
   if (error) {
-    console.log(error);
     return <div>Bocsi nincs net!</div>;
   }
 
