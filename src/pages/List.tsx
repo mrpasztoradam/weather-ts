@@ -36,14 +36,13 @@ const List = () => {
         <div className="card-container">
           {storedCities.length > 0 ? (
             storedCities.map((city: string, index: number) => (
-              <>
+              <React.Fragment key={index}>
                 <SmallCard
                   onClick={() => navigate(`/details/${city}`)}
                   cityName={city}
                   id={index}
-                  key={index}
                 ></SmallCard>
-              </>
+              </React.Fragment>
             ))
           ) : (
             <div>Please add a City to your favourites!</div>
