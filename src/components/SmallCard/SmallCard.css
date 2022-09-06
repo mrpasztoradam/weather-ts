@@ -30,6 +30,8 @@
   grid-template-columns: 55px auto;
   align-items: center;
   grid-area: weather-item;
+  right: 10px;
+  position: relative;
 }
 .card--weather-icon {
   max-width: -webkit-fill-available;
